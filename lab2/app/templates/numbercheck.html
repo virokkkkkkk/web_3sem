@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="my-5">Проверка номера</h1>
+    <!-- <h4>{{ request }}</h4> -->
+    <form method="POST" class="form-inline">
+        <div class="form-group">
+            <input type="text" id="number" name="number" class="form-control mr-2 {% if err_msg %}is-invalid{% endif %}" value="{{ request.form.get('number','') }}">
+        </div>
+        <div class="form-group">
+            <button type='submit' class="btn btn-primary">Проверить</button>
+        </div>
+    </form>
+
+
+    {% if request.method == 'POST' and number_res %}
+        <p style="color: green">Ваш номер: {{ number_res }}</p>
+    {% endif %}
+
+    {% if err_msg %}
+        <p style="color: red">{{ err_msg }}</p>
+    {% endif %}
+{% endblock %}

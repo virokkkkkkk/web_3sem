@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row mb-2">
+        <div class="col-md-2">{{ post.title }}</div>
+        <div class="col-md-10 text-primary">{{ post.author }}, {{ post.date }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <img width='640px' src="{{ url_for('static', filename='images/' ~ post.image_filename) }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">{{ post.text }}</div>
+    </div>
+    <div class="row">
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            <div class="input-group-prepend">
+              <button class='btn-primary'>Отправить</button>
+            </div>
+          </div>
+    </div>
+    <div class="row container">
+        <p>Comments</p>
+            {% for comment in comments %}
+            <div class="row">
+                <div class="col-md-2 text-primary">{{ comment.author }}</div>
+                <div class="col-md-10">{{ comment.text }}</div>
+                <div class="container justify-content-end">
+                {% for reply in comment.replies %}
+                    <div class="row">
+                        <div class="col-md-2 text-danger">{{ reply.author }}</div>
+                        <div class="col-md-10">{{ reply.text }}</div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+        
+        
+        
+{% endblock %}

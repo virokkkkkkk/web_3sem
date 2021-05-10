@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="my-5">Cookie</h1>
+    <h4>{{ request }}</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for name, value in request.cookies.items() %}
+            <tr>
+                <th>{{ name }}</th>
+                <th>{{ value }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+{% endblock %}
